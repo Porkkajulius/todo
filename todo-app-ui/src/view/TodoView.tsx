@@ -14,7 +14,12 @@ const TodoView: React.FC = () => {
     fetchTodos();
   }, [todoService]);
 
-  return <TodoComponent todos={todos}></TodoComponent>;
+  const createTodo = (todo: ITodo) => {
+    setTodos([...todos, todo]);
+    todoService.postTodo(todo);
+  };
+
+  return <TodoComponent todos={todos} createTodo={createTodo}></TodoComponent>;
 };
 
 export { TodoView };

@@ -5,7 +5,7 @@ import { ITodo } from "../interface/ITodo";
 const useTodoService = () => {
   const { fetchGet, fetchPost } = HttpUtil.useHttpService();
   return {
-    getTodos: async (): Promise<ITodo[]> => {
+    getTodos: async () => {
       const result = await fetchGet(config.todoURI);
       const todos: ITodo[] = await result.json();
       return todos.map((i: ITodo) => i);

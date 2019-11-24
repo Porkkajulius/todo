@@ -1,31 +1,18 @@
 import React from "react";
 import { ITodo } from "../interface/ITodo";
+import { TodoListComponent } from "./subComponent/TodoListComponent";
+import { TodoCreateComponent } from "./subComponent/TodoCreateComponent";
 
 interface ITodoRowsProps {
   todos: ReadonlyArray<ITodo>;
+  createTodo: (createdTodo: ITodo) => void;
 }
 
-const TodoComponent: React.FC<ITodoRowsProps> = ({ todos }) => {
+const TodoComponent: React.FC<ITodoRowsProps> = ({ todos, createTodo }) => {
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>Priority</th>
-            <th>Task</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {todos.map((todo, index) => (
-            <tr key={index}>
-              <td>{todo.priority}</td>
-              <td>{todo.task}</td>
-              <td>{todo.todoStatus}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TodoCreateComponent createTodo={createTodo}></TodoCreateComponent>
+      <TodoListComponent todos={todos}></TodoListComponent>
     </>
   );
 };
