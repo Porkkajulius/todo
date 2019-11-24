@@ -44,7 +44,7 @@ public class TodoController {
   @ResponseStatus(HttpStatus.OK)
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<TodoDto>> findAll() {
-    return ResponseEntity.ok(todoService.findTodos());
+    return ResponseEntity.ok(todoService.findAll());
   }
 
   @ApiOperation("Save a new Todo")

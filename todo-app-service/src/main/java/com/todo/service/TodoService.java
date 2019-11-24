@@ -21,7 +21,7 @@ public class TodoService {
     this.todoMapper = todoMapper;
   }
 
-  public List<TodoDto> findTodos() {
+  public List<TodoDto> findAll() {
     return todoRepository.findAll()
         .stream()
         .map(todoMapper::mapToDto)
