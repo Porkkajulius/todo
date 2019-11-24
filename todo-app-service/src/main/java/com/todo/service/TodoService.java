@@ -2,6 +2,7 @@ package com.todo.service;
 
 import com.todo.dto.TodoDto;
 import com.todo.mapper.TodoMapper;
+import com.todo.model.Todo;
 import com.todo.repository.TodoRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,10 +22,14 @@ public class TodoService {
   }
 
   public List<TodoDto> findTodos() {
-    return todoRepository.findTodos()
+    return todoRepository.findAll()
         .stream()
         .map(todoMapper::mapToDto)
         .collect(Collectors.toList());
   }
 
+  public TodoDto save(TodoDto todoDto) {
+    final Todo todo = todoRepository.save(todoMapper.mapToModel(todoDto));
+    return todoMapper.mapToDto(todo);
+  }
 }

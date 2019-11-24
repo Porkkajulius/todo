@@ -10,13 +10,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TodoRepository {
 
+  private static final String COLLECTION = "Todo";
+
   private final MongoTemplate mongoTemplate;
 
   public TodoRepository(MongoTemplate mongoTemplate) {
     this.mongoTemplate = mongoTemplate;
   }
 
-  public List<Todo> findTodos() {
-    return mongoTemplate.findAll(Todo.class);
+  public List<Todo> findAll() {
+    return mongoTemplate.findAll(Todo.class, COLLECTION);
+  }
+
+  public Todo save(Todo todo) {
+    return mongoTemplate.save(todo, COLLECTION);
   }
 }
